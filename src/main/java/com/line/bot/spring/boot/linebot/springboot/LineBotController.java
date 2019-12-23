@@ -42,7 +42,7 @@ public class LineBotController {
         System.out.println("Got text message from" + replyToken + " : " + text);
 
         switch (text) {
-            case "Profile": {
+            case "Profile1": {
                 String userId = event.getSource().getUserId();
                 if(userId != null) {
                     lineMessagingClient.getProfile(userId)

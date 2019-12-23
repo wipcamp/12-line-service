@@ -16,10 +16,4 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@EventMapping
-	public Message handleTextMessage(MessageEvent<TextMessageContent> e) {
-		System.out.println("event: " + e);
-		TextMessageContent message = e.getMessage();
-		return new TextMessage(message.getText());
-	}
 }
