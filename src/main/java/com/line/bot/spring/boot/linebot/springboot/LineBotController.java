@@ -39,6 +39,8 @@ public class LineBotController {
 
         log.info("Got text message from %s : %s", replyToken, text);
 
+        System.out.println("Got text message from" + replyToken + " : " + text);
+
         switch (text) {
             case "Profile": {
                 String userId = event.getSource().getUserId();
