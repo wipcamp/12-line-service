@@ -38,6 +38,7 @@ public class LineBotController {
         String text = content.getText();
 
         log.info("Got text message from %s : %s", replyToken, text);
+        System.out.println("Got text from " + replyToken + " : " + text);
 
         switch (text) {
             case "Profile1": {
@@ -53,9 +54,7 @@ public class LineBotController {
                                         new TextMessage("Display name: " +
                                                 profile.getDisplayName()),
                                         new TextMessage("Status message: " +
-                                                profile.getStatusMessage()),
-                                        new TextMessage("User ID: " +
-                                                profile.getUserId())
+                                                profile.getStatusMessage())
                                 ));
                             });
                 }
