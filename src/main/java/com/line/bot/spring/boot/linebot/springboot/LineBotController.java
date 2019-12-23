@@ -39,10 +39,8 @@ public class LineBotController {
 
         log.info("Got text message from %s : %s", replyToken, text);
 
-        System.out.println("Got text message from" + replyToken + " : " + text);
-
         switch (text) {
-            case "Profile1": {
+            case "Profile": {
                 String userId = event.getSource().getUserId();
                 if(userId != null) {
                     lineMessagingClient.getProfile(userId)
@@ -58,33 +56,11 @@ public class LineBotController {
                                                 profile.getStatusMessage()),
                                         new TextMessage("User ID: " +
                                                 profile.getUserId())
-
                                 ));
                             });
                 }
                 break;
             }
-            case "Check": {
-                String userId = event.getSource().getUserId();
-                if(userId != null) {
-                    lineMessagingClient.getProfile(userId)
-                            .whenComplete((profile, throwable) -> {
-                                if(throwable != null) {
-                                    this.replyText(replyToken, throwable.getMessage());
-                                    return;
-                                }
-                                this.reply(replyToken, Arrays.asList(
-                                        new TextMessage("User ID: " +
-                                                profile.getUserId()),
-                                        new TextMessage("Profile: " +
-                                                profile.toString())
-
-                                ));
-                            });
-                }
-                break;
-            }
-
             default:
                 log.info("Return echo message %s : %s", replyToken, text);
                 this.replyText(replyToken, text);
