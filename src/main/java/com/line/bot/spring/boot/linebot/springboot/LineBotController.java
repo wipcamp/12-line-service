@@ -40,7 +40,7 @@ public class LineBotController {
         log.info("Got text message from %s : %s", replyToken, text);
 
         switch (text) {
-            case "Profile": {
+            case "Profile1": {
                 String userId = event.getSource().getUserId();
                 if(userId != null) {
                     lineMessagingClient.getProfile(userId)
@@ -56,6 +56,22 @@ public class LineBotController {
                                                 profile.getStatusMessage()),
                                         new TextMessage("User ID: " +
                                                 profile.getUserId())
+                                ));
+                            });
+                }
+                break;
+            }case "Check": {
+                String userId = event.getSource().getUserId();
+                if(userId != null) {
+                    lineMessagingClient.getProfile(userId)
+                            .whenComplete((profile, throwable) -> {
+                                if(throwable != null) {
+                                    this.replyText(replyToken, throwable.getMessage());
+                                    return;
+                                }
+                                this.reply(replyToken, Arrays.asList(
+                                        new TextMessage("Display name: " +
+                                                profile.toString())
                                 ));
                             });
                 }
