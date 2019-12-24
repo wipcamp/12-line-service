@@ -37,6 +37,8 @@ public class LineBotController {
                                    TextMessageContent content) {
         String text = content.getText();
 
+        LineMessagingClient client = LineMessagingClient.builder("tWpR+L1l+3k7eQVVNPQ62n/ZcmNFrW6KpB5d4wYS3U7W3tNN0ALK69oed04TnYI+IvIQX4Z5YuE4tlfnRB6eiSXgA2PfNvdf195ACumwVG4hAoX/r8cFPrvVr9Q29c9tZlRnZcJ8l0hrGSv9LYg+uwdB04t89/1O/w1cDnyilFU=").build();
+
         log.info("Got text message from %s : %s", replyToken, text);
         System.out.println("Got text from " + replyToken + " : " + text);
 
@@ -69,8 +71,8 @@ public class LineBotController {
                                     return;
                                 }
                                 this.reply(replyToken, Arrays.asList(
-                                        new TextMessage("Display name: " +
-                                                profile.toString())
+                                        new TextMessage("Check: " +
+                                                client.toString())
                                 ));
                             });
                 }
