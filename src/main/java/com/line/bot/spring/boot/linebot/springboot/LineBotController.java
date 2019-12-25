@@ -72,7 +72,11 @@ public class LineBotController {
                                 }
                                 this.reply(replyToken, Arrays.asList(
                                         new TextMessage("Check: " +
-                                                client.toString())
+                                                client.toString()),
+                                        new TextMessage("Event: " +
+                                                event.getSource()),
+                                        new TextMessage(("User ID: " +
+                                                event.getSource().toString()))
                                 ));
                             });
                 }
