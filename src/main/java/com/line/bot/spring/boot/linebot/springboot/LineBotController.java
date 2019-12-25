@@ -73,6 +73,8 @@ public class LineBotController {
                                 this.reply(replyToken, Arrays.asList(
                                         new TextMessage("Check: " +
                                                 client.toString()),
+                                        new TextMessage("Check Client Profile: " +
+                                                client.getProfile()),
                                         new TextMessage("Event: " +
                                                 event.getSource()),
                                         new TextMessage(("User ID: " +
