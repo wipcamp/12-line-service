@@ -56,12 +56,16 @@ public class LineBotController {
                                         new TextMessage("Display name: " +
                                                 profile.getDisplayName()),
                                         new TextMessage("Status message: " +
-                                                profile.getStatusMessage())
+                                                profile.getStatusMessage()),
+                                        new TextMessage("Display All: " +
+                                                profile.toString()),
+                                        new TextMessage("Hash Code:" +
+                                                profile.hashCode())
                                 ));
                             });
                 }
                 break;
-            }case "Check": {
+            }case "Client": {
                 String userId = event.getSource().getUserId();
                 if(userId != null) {
                     lineMessagingClient.getProfile(userId)
@@ -73,8 +77,6 @@ public class LineBotController {
                                 this.reply(replyToken, Arrays.asList(
                                         new TextMessage("Check: " +
                                                 client.toString()),
-                                        new TextMessage("Check Client Profile: " +
-                                                client.getProfile()),
                                         new TextMessage("Event: " +
                                                 event.getSource()),
                                         new TextMessage(("User ID: " +
