@@ -14,7 +14,7 @@ linecorp:
         channel:
             channelId: '1653703435'
             channelSecret: 1de29b41b4411ff9832c4bba82fe3234
-            callbackUrl: 'https://line12devlogin.herokuapp.com/auth'
+            callbackUrl: 'https://wipcamp12-linelogin.herokuapp.com/auth'
 
 
 

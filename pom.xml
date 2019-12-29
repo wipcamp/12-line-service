@@ -5,12 +5,11 @@
   <!-- ================================================================ -->
   <!--     general information                                          -->
   <!-- ================================================================ -->
-  <groupId>com.linecorp.sample.login</groupId>
-  <artifactId>line-login-starter</artifactId>
+  <groupId>linebot.linelogin</groupId>
+  <artifactId>line-login</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>line-login-starter</name>
-  <url>https://github.com/line/line-login-starter</url>
+  <name>line-login</name>
   <properties>
     <java.version>1.8</java.version>
     <retrofit2.groupId>com.squareup.retrofit2</retrofit2.groupId>
