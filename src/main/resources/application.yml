@@ -1,4 +1,10 @@
-line.bot:
-  channel-token: 'tWpR+L1l+3k7eQVVNPQ62n/ZcmNFrW6KpB5d4wYS3U7W3tNN0ALK69oed04TnYI+IvIQX4Z5YuE4tlfnRB6eiSXgA2PfNvdf195ACumwVG4hAoX/r8cFPrvVr9Q29c9tZlRnZcJ8l0hrGSv9LYg+uwdB04t89/1O/w1cDnyilFU='
-  channel-secret: '3f75a8ed2ae26cef6fb467c5ff636aed'
-  handler.path: /callback
+logging:
+  level:
+    com.line.service.spring.boot.linelogin: DEBUG
+
+linecorp:
+  platform:
+    channel:
+      channelId: '1653703435'
+      channelSecret: 1de29b41b4411ff9832c4bba82fe3234
+      callbackUrl: 'https://line12devlogin.herokuapp.com/auth'
