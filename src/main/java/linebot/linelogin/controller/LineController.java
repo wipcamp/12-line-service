@@ -62,11 +62,11 @@ public class LineController {
         }
 
         if (error != null || errorCode != null || errorMessage != null){
-            return "redirect:/";
+            return "redirect:/loginCancel";
         }
 
         if (!state.equals(httpSession.getAttribute(LINE_WEB_LOGIN_STATE))){
-            return "redirect:/";
+            return "redirect:/sessionError";
         }
 
         httpSession.removeAttribute(LINE_WEB_LOGIN_STATE);
@@ -82,7 +82,7 @@ public class LineController {
         }
         httpSession.setAttribute(ACCESS_TOKEN, token);
         System.out.println("Log Token: " + token.toString());
-        return "redirect:/";
+        return "redirect:/success";
     }
 
     @RequestMapping("/success")
@@ -107,17 +107,17 @@ public class LineController {
             logger.debug("email : " + idToken.email);
         }
         model.addAttribute("idToken", idToken);
-        return "redirect:/";
+        return "user/success";
     }
 
     @RequestMapping("/loginCancel")
     public String loginCancel() {
-        return "redirect:/";
+        return "user/login_cancel";
     }
 
     @RequestMapping("/sessionError")
     public String sessionError() {
-        return "redirect:/";
+        return "user/session_error";
     }
 
 }
