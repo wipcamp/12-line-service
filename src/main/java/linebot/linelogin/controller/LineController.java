@@ -51,7 +51,7 @@ public class LineController {
             @RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "errorCode", required = false) String errorCode,
             @RequestParam(value = "errorMessage", required = false) String errorMessage) {
-        logger.debug("Redirect Completed");
+
         if (logger.isDebugEnabled()) {
             logger.debug("parameter code : " + code);
             logger.debug("parameter state : " + state);
@@ -86,7 +86,6 @@ public class LineController {
         }
         httpSession.setAttribute(ACCESS_TOKEN, token);
         System.out.println("Log Token: " + token.toString());
-//        return null;
         return "redirect:/success";
     }
 
@@ -114,7 +113,7 @@ public class LineController {
             logger.debug("IDToken failed");
         }
         model.addAttribute("idToken", idToken);
-        return null;
+        return "user/success";
     }
 
     @RequestMapping("/loginCancel")
@@ -124,7 +123,6 @@ public class LineController {
 
     @RequestMapping("/sessionError")
     public String sessionError() {
-        logger.debug("Session Error");
         return "user/session_error";
     }
 
