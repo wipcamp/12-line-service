@@ -17,6 +17,7 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.function.Function;
 
+@Component
 public class LineAPIService {
 
     private static final String GRANT_TYPE_AUTHORIZATION_CODE = "authorization_code";
