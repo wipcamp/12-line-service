@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="line-login" />
         <module name="line-login-starter" />
         <module name="linebot.springboot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="line-login" target="1.8" />
       <module name="line-login-starter" target="1.8" />
       <module name="linebot.springboot" target="1.8" />
     </bytecodeTargetLevel>
