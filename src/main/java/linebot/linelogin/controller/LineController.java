@@ -59,6 +59,8 @@ public class LineController {
             logger.debug("parameter error : " + error);
             logger.debug("parameter errorCode : " + errorCode);
             logger.debug("parameter errorMessage : " + errorMessage);
+        }else {
+            logger.debug("Parameter failed ");
         }
 
         if (error != null || errorCode != null || errorMessage != null){
@@ -79,6 +81,8 @@ public class LineController {
             logger.debug("refresh_token : " + token.refresh_token);
             logger.debug("id_token : " + token.id_token);
 
+        }else {
+            logger.debug(" Token failed ");
         }
         httpSession.setAttribute(ACCESS_TOKEN, token);
         System.out.println("Log Token: " + token.toString());
@@ -105,6 +109,8 @@ public class LineController {
             logger.debug("displayName : " + idToken.name);
             logger.debug("pictureUrl : " + idToken.picture);
             logger.debug("email : " + idToken.email);
+        }else {
+            logger.debug("IDToken failed");
         }
         model.addAttribute("idToken", idToken);
         return "user/success";
