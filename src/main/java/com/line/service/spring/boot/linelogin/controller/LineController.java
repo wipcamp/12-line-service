@@ -29,7 +29,7 @@ public class LineController {
     public String login() { return "user/login"; }
 
 //    >
-    @RequestMapping("/gotoauthpage")
+    @RequestMapping(value = "/gotoauthpage")
     public String goToAuthPage(HttpSession session) {
         final String state = Utils.getToken();
         final String nonce = Utils.getToken();
@@ -108,7 +108,7 @@ public class LineController {
     }
 
     @RequestMapping("/loginCancel")
-    public String loginCalcel() { return "user/login_cancel"; }
+    public String loginCancel() { return "user/login_cancel"; }
 
     @RequestMapping("/sessionError")
     public String sessionError() { return "user/session_error"; }
