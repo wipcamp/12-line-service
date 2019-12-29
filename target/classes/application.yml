@@ -1,0 +1,20 @@
+server:
+    port: 9000
+
+management:
+    address: 127.0.0.1
+    port: 9100
+
+logging:
+    level:
+        com.linecorp.sample: DEBUG
+
+linecorp:
+    platform:
+        channel:
+            channelId: '1653703435'
+            channelSecret: 1de29b41b4411ff9832c4bba82fe3234
+            callbackUrl: 'https://line12devlogin.herokuapp.com/auth'
+
+
+
