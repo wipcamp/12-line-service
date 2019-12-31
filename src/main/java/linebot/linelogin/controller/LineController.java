@@ -48,6 +48,7 @@ public class LineController {
     @RequestMapping("/auth")
     public String auth(
             HttpSession httpSession,
+            HttpServletResponse response,
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "state", required = false) String state,
             @RequestParam(value = "scope", required = false) String scope,
@@ -85,6 +86,8 @@ public class LineController {
         }
         httpSession.setAttribute(ACCESS_TOKEN, token);
         System.out.println("Log Token: " + token.id_token);
+        Cookie cookie = new Cookie("token", token.id_token);
+        response.addCookie(cookie);
         return "redirect:/success";
     }
 
