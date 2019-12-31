@@ -1,6 +1,7 @@
 package linebot.linelogin.controller;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 
@@ -113,12 +114,14 @@ public class LineController {
             logger.debug("email : " + idToken.email);
         }
         model.addAttribute("idToken", idToken);
-        return "redirect:/profile";
+        return "redirect:/token";
     }
 
     @RequestMapping("/token")
-    public IdToken getToken(HttpSession httpSession) {
+    public IdToken getToken(HttpSession httpSession, HttpServletResponse response) {
         AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
+        Cookie cookie = new Cookie("token", token.id_token);
+        response.addCookie(cookie);
         return lineAPIService.idToken(token.id_token);
     }
 
