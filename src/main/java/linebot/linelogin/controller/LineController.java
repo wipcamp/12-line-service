@@ -1,5 +1,6 @@
 package linebot.linelogin.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 
@@ -82,6 +83,7 @@ public class LineController {
         }
         httpSession.setAttribute(ACCESS_TOKEN, token);
         System.out.println("Log Token: " + token.id_token);
+        Cookie cookie = new Cookie("token", token.id_token);
         return "redirect:/success";
     }
 
