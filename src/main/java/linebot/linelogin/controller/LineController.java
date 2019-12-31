@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import sun.tools.jstat.Token;
 
 
 @Controller
@@ -119,7 +118,7 @@ public class LineController {
 
     @RequestMapping("/token")
     public IdToken getToken(HttpSession httpSession) {
-        AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN)
+        AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
         return lineAPIService.idToken(token.id_token);
     }
 
