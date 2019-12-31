@@ -23,6 +23,7 @@ public class LineController {
     static final String ACCESS_TOKEN = "accessToken";
     private static final Logger logger = Logger.getLogger(LineController.class);
     private static final String NONCE = "nonce";
+    private Cookie cookie = new Cookie("token", "sth");
 
     @Autowired
     private LineAPIService lineAPIService;
@@ -83,16 +84,17 @@ public class LineController {
         }
         httpSession.setAttribute(ACCESS_TOKEN, token);
         System.out.println("Log Token: " + token.id_token);
-        Cookie cookie = new Cookie("token", token.id_token);
         return "redirect:/success";
     }
 
     @RequestMapping("/success")
     public String success(HttpSession httpSession, Model model) {
 
+
         logger.debug("Success Redirect to /success");
 
         AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
+        cookie.setValue(token.id_token);
         if (token == null){
             return "redirect:/";
         }
