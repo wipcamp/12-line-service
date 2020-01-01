@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 
-import linebot.linelogin.api.LineAPIService;
-import linebot.linelogin.api.response.AccessToken;
-import linebot.linelogin.api.response.IdToken;
+import linebot.linelogin.service.LineAPIService;
+import linebot.linelogin.entity.AccessToken;
+import linebot.linelogin.entity.IdToken;
 import linebot.linelogin.utils.CommonUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,6 @@ public class LineController {
     @RequestMapping("/auth")
     public String auth(
             HttpSession httpSession,
-            HttpServletResponse response,
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "state", required = false) String state,
             @RequestParam(value = "scope", required = false) String scope,
@@ -86,19 +85,19 @@ public class LineController {
         }
         httpSession.setAttribute(ACCESS_TOKEN, token);
         System.out.println("Log Token: " + token.id_token);
-        Cookie cookie = new Cookie("token", token.id_token);
-        response.addCookie(cookie);
+
         return "redirect:/success";
     }
 
     @RequestMapping("/success")
-    public String success(HttpSession httpSession, Model model) {
+    public String success(HttpSession httpSession, Model model, HttpServletResponse response) {
 
 
         logger.debug("Success Redirect to /success");
 
         AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
         cookie.setValue(token.id_token);
+        response.addCookie(cookie);
         if (token == null){
             return "redirect:/";
         }

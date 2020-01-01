@@ -1,13 +1,15 @@
-package linebot.linelogin.api;
+package linebot.linelogin.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import linebot.linelogin.api.response.AccessToken;
-import linebot.linelogin.api.response.IdToken;
-import linebot.linelogin.api.response.Verify;
+import linebot.linelogin.entity.Client;
+import linebot.linelogin.entity.LineAPI;
+import linebot.linelogin.entity.AccessToken;
+import linebot.linelogin.entity.IdToken;
+import linebot.linelogin.entity.Verify;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import retrofit2.Call;

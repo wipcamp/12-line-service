@@ -1,8 +1,5 @@
-package linebot.linelogin.api;
+package linebot.linelogin.entity;
 
-
-import linebot.linelogin.api.response.AccessToken;
-import linebot.linelogin.api.response.Verify;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
