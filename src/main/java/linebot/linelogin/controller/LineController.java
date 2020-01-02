@@ -121,12 +121,12 @@ public class LineController {
     }
 
     @RequestMapping("/token")
-    public IdToken getToken(HttpSession httpSession, HttpServletResponse response) {
+    public String getToken(HttpSession httpSession, HttpServletResponse response) {
         AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
         logger.debug("Access Token : " + token.id_token);
         Cookie cookie = new Cookie("token", token.id_token);
         response.addCookie(cookie);
-        return lineAPIService.idToken(token.id_token);
+        return "Hi";
     }
 
 
