@@ -34,7 +34,7 @@ public class LineController {
         return "user/login";
     }
 
-    @RequestMapping(value = "/gotoauthpage")
+    @RequestMapping(value = "/gotolineauth")
     public String goToAuthPage(HttpSession httpSession){
         final String state = CommonUtils.getToken();
         final String nonce = CommonUtils.getToken();
@@ -69,6 +69,7 @@ public class LineController {
         }
 
         if (!state.equals(httpSession.getAttribute(LINE_WEB_LOGIN_STATE))){
+            System.out.println("LINE LOGIN STATE : " + LINE_WEB_LOGIN_STATE);
             return "redirect:/sessionError";
         }
 
