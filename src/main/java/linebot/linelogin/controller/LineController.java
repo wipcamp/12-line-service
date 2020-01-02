@@ -34,8 +34,19 @@ public class LineController {
         return "user/login";
     }
 
-    @RequestMapping(value = "/gotolineauth")
-    public String goToAuthPage(HttpSession httpSession){
+    @RequestMapping(value = "/registerauth")
+    public String registerAuth(HttpSession httpSession){
+        final String state = CommonUtils.getToken();
+        final String nonce = CommonUtils.getToken();
+        httpSession.setAttribute(LINE_WEB_LOGIN_STATE, state);
+        httpSession.setAttribute(NONCE, nonce);
+        final String url = lineAPIService.getLineLoginUrl(state, nonce, Arrays.asList("openid", "profile", "email"));
+        logger.debug("Rediect Url: " + url);
+        return "redirect:" + url;
+    }
+
+    @RequestMapping(value = "/gameprauth")
+    public String gamePRAuth(HttpSession httpSession){
         final String state = CommonUtils.getToken();
         final String nonce = CommonUtils.getToken();
         httpSession.setAttribute(LINE_WEB_LOGIN_STATE, state);
