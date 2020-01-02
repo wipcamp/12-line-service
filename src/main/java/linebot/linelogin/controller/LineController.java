@@ -69,7 +69,7 @@ public class LineController {
         }
 
         if (!state.equals(httpSession.getAttribute(LINE_WEB_LOGIN_STATE))){
-            System.out.println("LINE LOGIN STATE : " + LINE_WEB_LOGIN_STATE);
+
             return "redirect:/sessionError";
         }
 
@@ -91,14 +91,13 @@ public class LineController {
     }
 
     @RequestMapping("/success")
-    public String success(HttpSession httpSession, Model model, HttpServletResponse response) {
+    public String success(HttpSession httpSession, Model model) {
 
 
         logger.debug("Success Redirect to /success");
 
         AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
-        cookie.setValue(token.id_token);
-        response.addCookie(cookie);
+
         if (token == null){
             return "redirect:/";
         }
@@ -110,6 +109,7 @@ public class LineController {
 
         httpSession.removeAttribute(NONCE);
         IdToken idToken = lineAPIService.idToken(token.id_token);
+        logger.debug("ID Token : " + idToken.email);
         if (logger.isDebugEnabled()) {
             logger.debug("userId : " + idToken.sub);
             logger.debug("displayName : " + idToken.name);
@@ -123,6 +123,7 @@ public class LineController {
     @RequestMapping("/token")
     public IdToken getToken(HttpSession httpSession, HttpServletResponse response) {
         AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
+        logger.debug("Access Token : " + token.id_token);
         Cookie cookie = new Cookie("token", token.id_token);
         response.addCookie(cookie);
         return lineAPIService.idToken(token.id_token);
@@ -137,6 +138,9 @@ public class LineController {
 
     @RequestMapping("/sessionError")
     public String sessionError() {
+
+        System.out.println("LINE LOGIN STATE : " + LINE_WEB_LOGIN_STATE);
+
         return "user/session_error";
     }
 

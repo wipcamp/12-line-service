@@ -1,9 +1,9 @@
-linebot/linelogin/api/response/AccessToken.class
+linebot/linelogin/entity/Client.class
 linebot/linelogin/controller/LineController.class
+linebot/linelogin/entity/LineAPI.class
 linebot/linelogin/utils/CommonUtils.class
-linebot/linelogin/api/response/Verify.class
-linebot/linelogin/api/response/IdToken.class
 linebot/linelogin/Application.class
-linebot/linelogin/api/LineAPIService.class
-linebot/linelogin/api/Client.class
-linebot/linelogin/api/LineAPI.class
+linebot/linelogin/entity/AccessToken.class
+linebot/linelogin/entity/Verify.class
+linebot/linelogin/entity/IdToken.class
+linebot/linelogin/service/LineAPIService.class
