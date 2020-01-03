@@ -14,8 +14,8 @@ FROM openjdk:8-alpine3.7
 
 WORKDIR /app
 
-COPY --from=builder /app/target/12-user-service-application.jar /app
+COPY --from=builder /app/target/line-login.jar /app
 
-ENTRYPOINT ["java", "-jar", "/app/12-user-service-application.jar"]
+ENTRYPOINT ["java", "-jar", "/app/line-login.jar"]
 
 CMD [""]
