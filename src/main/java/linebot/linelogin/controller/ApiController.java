@@ -22,11 +22,11 @@ public class ApiController {
     }
 
     @GetMapping("/authForGame")
-    public AccessToken authForGame(@RequestParam(value = "code", required = false) String code,
+    public @ResponseBody ResponseEntity<String> authForGame(@RequestParam(value = "code", required = false) String code,
                                    @RequestParam(value = "state", required = false) String state,
                                    @RequestParam(value = "scope", required = false) String scope) {
         AccessToken token = lineAPIService.accessToken(code);
-        return token;
+        return new ResponseEntity<String>(token.id_token, HttpStatus.OK);
     }
 
 }
