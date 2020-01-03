@@ -35,6 +35,10 @@ public class LineAPIService {
     @Value("${linecorp.platform.channel.callbackUrl}")
     private String callbackUrl;
 
+    private String gameChannelId = "1653724802";
+    private String gameChannelSecret = "8234788b246ebc5fe9e98b92777392e9";
+    private String gameCallbackUrl = "";
+
     public AccessToken accessToken(String code) {
         return getClient(t -> t.accessToken(
                 GRANT_TYPE_AUTHORIZATION_CODE,
@@ -111,8 +115,8 @@ public class LineAPIService {
         }
 
         return "https://access.line.me/oauth2/v2.1/authorize?response_type=code"
-                + "&client_id=" + channelId
-                + "&redirect_uri=" + encodedCallbackUrl
+                + "&client_id=1653724802"
+                + "&redirect_uri=http://line.service.freezer.wip.camp/authForGame"
                 + "&state=" + state
                 + "&scope=" + scope
                 + "&nonce=" + nonce;
