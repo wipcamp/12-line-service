@@ -9,8 +9,10 @@ import linebot.linelogin.service.LineAPIService;
 import linebot.linelogin.entity.AccessToken;
 import linebot.linelogin.entity.IdToken;
 import linebot.linelogin.utils.CommonUtils;
-import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.logging.LoggerConfiguration;
+import org.springframework.boot.logging.LoggingSystem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +24,7 @@ public class LineController {
 
     private static final String LINE_WEB_LOGIN_STATE = "lineWebLoginState";
     static final String ACCESS_TOKEN = "accessToken";
-    private static final Logger logger = Logger.getLogger(LineController.class);
+    
     private static final String NONCE = "nonce";
     private Cookie cookie = new Cookie("token", "sth");
 
@@ -41,7 +43,7 @@ public class LineController {
         httpSession.setAttribute(LINE_WEB_LOGIN_STATE, state);
         httpSession.setAttribute(NONCE, nonce);
         final String url = lineAPIService.getLineLoginUrl(state, nonce, Arrays.asList("openid", "profile", "email"));
-        logger.debug("Rediect Url: " + url);
+       //logger.debug("Rediect Url: " + url);
         return "redirect:" + url;
     }
 
@@ -52,7 +54,7 @@ public class LineController {
         httpSession.setAttribute(LINE_WEB_LOGIN_STATE, state);
         httpSession.setAttribute(NONCE, nonce);
         final String url = lineAPIService.getLineLoginUrl(state, nonce, Arrays.asList("openid", "profile", "email"));
-        logger.debug("Rediect Url: " + url);
+       //logger.debug("Rediect Url: " + url);
         return "redirect:" + url;
     }
 
@@ -66,14 +68,14 @@ public class LineController {
             @RequestParam(value = "errorCode", required = false) String errorCode,
             @RequestParam(value = "errorMessage", required = false) String errorMessage) {
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("parameter code : " + code);
-            logger.debug("parameter state : " + state);
-            logger.debug("parameter scope : " + scope);
-            logger.debug("parameter error : " + error);
-            logger.debug("parameter errorCode : " + errorCode);
-            logger.debug("parameter errorMessage : " + errorMessage);
-        }
+        //if (logger.isDebugEnabled()) {
+           //logger.debug("parameter code : " + code);
+           //logger.debug("parameter state : " + state);
+           //logger.debug("parameter scope : " + scope);
+           //logger.debug("parameter error : " + error);
+           //logger.debug("parameter errorCode : " + errorCode);
+           //logger.debug("parameter errorMessage : " + errorMessage);
+        //}
 
         if (error != null || errorCode != null || errorMessage != null){
             return "redirect:/loginCancel";
@@ -86,15 +88,15 @@ public class LineController {
 
         httpSession.removeAttribute(LINE_WEB_LOGIN_STATE);
         AccessToken token = lineAPIService.accessToken(code);
-        if (logger.isDebugEnabled()) {
-            logger.debug("scope : " + token.scope);
-            logger.debug("access_token : " + token.access_token);
-            logger.debug("token_type : " + token.token_type);
-            logger.debug("expires_in : " + token.expires_in);
-            logger.debug("refresh_token : " + token.refresh_token);
-            logger.debug("id_token : " + token.id_token);
+        //if (logger.isDebugEnabled()) {
+           //logger.debug("scope : " + token.scope);
+           //logger.debug("access_token : " + token.access_token);
+           //logger.debug("token_type : " + token.token_type);
+           //logger.debug("expires_in : " + token.expires_in);
+           //logger.debug("refresh_token : " + token.refresh_token);
+           //logger.debug("id_token : " + token.id_token);
 
-        }
+        //}
         httpSession.setAttribute(ACCESS_TOKEN, token);
         System.out.println("Log Token: " + token.id_token);
 
@@ -105,7 +107,7 @@ public class LineController {
     public String success(HttpSession httpSession, Model model) {
 
 
-        logger.debug("Success Redirect to /success");
+       //logger.debug("Success Redirect to /success");
 
         AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
 
@@ -120,13 +122,13 @@ public class LineController {
 
         httpSession.removeAttribute(NONCE);
         IdToken idToken = lineAPIService.idToken(token.id_token);
-        logger.debug("ID Token : " + idToken.email);
-        if (logger.isDebugEnabled()) {
-            logger.debug("userId : " + idToken.sub);
-            logger.debug("displayName : " + idToken.name);
-            logger.debug("pictureUrl : " + idToken.picture);
-            logger.debug("email : " + idToken.email);
-        }
+       //logger.debug("ID Token : " + idToken.email);
+        //if (logger.isDebugEnabled()) {
+           //logger.debug("userId : " + idToken.sub);
+           //logger.debug("displayName : " + idToken.name);
+           //logger.debug("pictureUrl : " + idToken.picture);
+           //logger.debug("email : " + idToken.email);
+        //}
         model.addAttribute("idToken", idToken);
         return "redirect:/token";
     }
@@ -134,13 +136,11 @@ public class LineController {
     @RequestMapping(value = "/token")
     public String getToken(HttpSession httpSession, HttpServletResponse response) {
         AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
-        logger.debug("Access Token : " + token.id_token);
+       //logger.debug("Access Token : " + token.id_token);
         Cookie cookie = new Cookie("token", token.id_token);
         response.addCookie(cookie);
         return "Hi";
     }
-
-
 
     @RequestMapping("/loginCancel")
     public String loginCancel() {

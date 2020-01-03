@@ -14,6 +14,11 @@ public class ApiController {
     @Autowired
     private LineAPIService lineAPIService;
 
+    @GetMapping("/gameauth")
+    public @ResponseBody ResponseEntity<String> gameauth(){
+
+    }
+
     @GetMapping("/recieveToken")
     public @ResponseBody ResponseEntity<String> recieveToken(){
         return new ResponseEntity<String>("Get Response", HttpStatus.OK);

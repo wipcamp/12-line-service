@@ -100,6 +100,24 @@ public class LineAPIService {
                 + "&nonce=" + nonce;
     }
 
+    public String gameLineLoginUrl(String state, String nonce, List<String> scopes) {
+        final String encodedCallbackUrl;
+        final String scope = String.join("%20", scopes);
+
+        try {
+            encodedCallbackUrl = URLEncoder.encode(callbackUrl, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+
+        return "https://access.line.me/oauth2/v2.1/authorize?response_type=code"
+                + "&client_id=" + channelId
+                + "&redirect_uri=" + encodedCallbackUrl
+                + "&state=" + state
+                + "&scope=" + scope
+                + "&nonce=" + nonce;
+    }
+
     public boolean verifyIdToken(String id_token, String nonce) {
         try {
             JWT.require(

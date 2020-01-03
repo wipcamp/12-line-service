@@ -1,6 +1,7 @@
 /Users/smurf/Documents/Project/12-line-service/src/main/java/linebot/linelogin/entity/AccessToken.java
 /Users/smurf/Documents/Project/12-line-service/src/main/java/linebot/linelogin/entity/Verify.java
 /Users/smurf/Documents/Project/12-line-service/src/main/java/linebot/linelogin/Application.java
+/Users/smurf/Documents/Project/12-line-service/src/main/java/linebot/linelogin/controller/ApiController.java
 /Users/smurf/Documents/Project/12-line-service/src/main/java/linebot/linelogin/entity/LineAPI.java
 /Users/smurf/Documents/Project/12-line-service/src/main/java/linebot/linelogin/controller/LineController.java
 /Users/smurf/Documents/Project/12-line-service/src/main/java/linebot/linelogin/entity/Client.java
