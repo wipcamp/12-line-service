@@ -3,6 +3,8 @@ FROM maven:3.6.3-jdk-8 as builder
 WORKDIR /app
 
 COPY pom.xml .
+COPY line-login.iml .
+COPY linebot.login.iml .
 
 RUN mvn dependency:go-offline
 
