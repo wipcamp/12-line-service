@@ -46,7 +46,7 @@ public class LineController {
     }
 
     @RequestMapping(value = "/gameprauth")
-    public String gamePRAuth(HttpSession httpSession){
+    public String gamePRAuth (HttpSession httpSession){
         final String state = CommonUtils.getToken();
         final String nonce = CommonUtils.getToken();
         httpSession.setAttribute(LINE_WEB_LOGIN_STATE, state);
@@ -131,7 +131,7 @@ public class LineController {
         return "redirect:/token";
     }
 
-    @RequestMapping("/token")
+    @RequestMapping(value = "/token")
     public String getToken(HttpSession httpSession, HttpServletResponse response) {
         AccessToken token = (AccessToken)httpSession.getAttribute(ACCESS_TOKEN);
         logger.debug("Access Token : " + token.id_token);
