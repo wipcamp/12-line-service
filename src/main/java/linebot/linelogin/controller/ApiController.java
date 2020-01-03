@@ -16,7 +16,7 @@ public class ApiController {
 
     @GetMapping("/gameauth")
     public @ResponseBody ResponseEntity<String> gameauth(){
-
+        return null;
     }
 
     @GetMapping("/recieveToken")
