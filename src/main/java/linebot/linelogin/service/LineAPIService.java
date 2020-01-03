@@ -48,6 +48,15 @@ public class LineAPIService {
                 code));
     }
 
+    public AccessToken gameAccessToken(String code) {
+        return getClient(t -> t.accessToken(
+                GRANT_TYPE_AUTHORIZATION_CODE,
+                gameChannelId,
+                gameChannelSecret,
+                "http://line.service.freezer.wip.camp/authForGame",
+                code));
+    }
+
     public AccessToken refreshToken(final AccessToken accessToken) {
         return getClient(t -> t.refreshToken(
                 GRANT_TYPE_REFRESH_TOKEN,

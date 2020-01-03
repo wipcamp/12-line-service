@@ -25,7 +25,7 @@ public class ApiController {
     public @ResponseBody ResponseEntity<String> authForGame(@RequestParam(value = "code", required = false) String code,
                                    @RequestParam(value = "state", required = false) String state,
                                    @RequestParam(value = "scope", required = false) String scope) {
-        AccessToken token = lineAPIService.accessToken(code);
+        AccessToken token = lineAPIService.gameAccessToken(code);
         return new ResponseEntity<String>(token.id_token, HttpStatus.OK);
     }
 
