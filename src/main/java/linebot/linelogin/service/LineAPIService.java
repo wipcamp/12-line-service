@@ -53,7 +53,7 @@ public class LineAPIService {
                 GRANT_TYPE_AUTHORIZATION_CODE,
                 gameChannelId,
                 gameChannelSecret,
-                "https://line.service.freezer.wip.camp/authForGame",
+                "https://game.freezer.wip.camp/login",
                 code));
     }
 
@@ -154,6 +154,5 @@ public class LineAPIService {
     private <R> R getClient(final Function<LineAPI, Call<R>> function) {
         return Client.getClient("https://api.line.me/", LineAPI.class, function);
     }
-
 
 }
