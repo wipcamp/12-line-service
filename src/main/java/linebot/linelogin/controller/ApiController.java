@@ -23,7 +23,7 @@ public class ApiController {
 
     @PostMapping("/authForGame")
     public @ResponseBody ResponseEntity<AccessToken> authForGame(
-            @RequestParam(value = "code", required = false) String code,
+            @RequestParam(value = "code") String code,
             HttpServletResponse response) {
         AccessToken token = lineAPIService.gameAccessToken(code);
         Cookie cookie = new Cookie("token", token.access_token);
