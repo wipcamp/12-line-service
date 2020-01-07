@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-@CrossOrigin("*")
+@CrossOrigin("https://game.freezer.wip.camp/login")
 @RestController
 public class ApiController {
 
@@ -28,9 +28,9 @@ public class ApiController {
             @RequestBody AccessToken code,
             HttpServletResponse response) {
         AccessToken token = lineAPIService.gameAccessToken(code.code);
-        Cookie cookie = new Cookie("token", token.access_token);
-        response.addCookie(cookie);
-        return new ResponseEntity<AccessToken> (token, HttpStatus.OK);
+//        Cookie cookie = new Cookie("token", token.access_token);
+//        response.addCookie(cookie);
+        return new ResponseEntity<AccessToken>(token,HttpStatus.OK);
     }
 
 
