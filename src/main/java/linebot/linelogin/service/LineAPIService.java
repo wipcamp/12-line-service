@@ -53,7 +53,7 @@ public class LineAPIService {
                 GRANT_TYPE_AUTHORIZATION_CODE,
                 gameChannelId,
                 gameChannelSecret,
-                "https://line.service.freezer.wip.camp/authForGame",
+                "https://game.freezer.wip.camp/login",
                 code));
     }
 
