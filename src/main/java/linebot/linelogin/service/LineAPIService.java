@@ -155,4 +155,5 @@ public class LineAPIService {
         return Client.getClient("https://api.line.me/", LineAPI.class, function);
     }
 
+
 }
