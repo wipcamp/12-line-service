@@ -53,7 +53,7 @@ public class LineAPIService {
                 GRANT_TYPE_AUTHORIZATION_CODE,
                 gameChannelId,
                 gameChannelSecret,
-                "https://game.freezer.wip.camp/login",
+                "https://line.service.freezer.wip.camp/authForGame",
                 code));
     }
 
@@ -153,6 +153,20 @@ public class LineAPIService {
 
     private <R> R getClient(final Function<LineAPI, Call<R>> function) {
         return Client.getClient("https://api.line.me/", LineAPI.class, function);
+    }
+
+    public void whenPostJsonUsingHttpClient_thenCorrect()
+            {
+
+        HttpPost httpPost = new HttpPost("http://www.example.com");
+
+        String json = "{"id":1,"name":"John"}";
+        StringEntity entity = new StringEntity(json);
+        httpPost.setEntity(entity);
+        httpPost.setHeader("Accept", "application/json");
+        httpPost.setHeader("Content-type", "application/json");
+        CloseableHttpResponse response = client.execute(httpPost);
+        client.close();
     }
 
 }
