@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+@CrossOrigin("${domain_game}")
 @RestController
 public class ApiController {
 
@@ -23,9 +24,9 @@ public class ApiController {
 
     @PostMapping("/authForGame")
     public @ResponseBody ResponseEntity<AccessToken> authForGame(
-            @RequestParam(value = "code") String code,
+            @RequestBody AccessToken code,
             HttpServletResponse response) {
-        AccessToken token = lineAPIService.gameAccessToken(code);
+        AccessToken token = lineAPIService.gameAccessToken(code.code);
         Cookie cookie = new Cookie("token", token.access_token);
         response.addCookie(cookie);
         return new ResponseEntity<AccessToken> (token, HttpStatus.OK);

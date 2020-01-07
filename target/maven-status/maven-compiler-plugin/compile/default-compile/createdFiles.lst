@@ -1,3 +1,10 @@
+linebot/linelogin/entity/Client.class
+linebot/linelogin/controller/LineController.class
+linebot/linelogin/entity/LineAPI.class
+linebot/linelogin/utils/CommonUtils.class
+linebot/linelogin/Application.class
 linebot/linelogin/entity/AccessToken.class
 linebot/linelogin/entity/Verify.class
-linebot/linelogin/Application.class
+linebot/linelogin/controller/ApiController.class
+linebot/linelogin/entity/IdToken.class
+linebot/linelogin/service/LineAPIService.class
