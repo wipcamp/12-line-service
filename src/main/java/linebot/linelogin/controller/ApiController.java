@@ -23,9 +23,9 @@ public class ApiController {
         return new ResponseEntity<String>("Get Response", HttpStatus.OK);
     }
 
-    @PostMapping("/authForGame")
+    @GetMapping("/authForGame")
     public @ResponseBody ResponseEntity<AccessToken> authForGame(
-            @RequestParam(value = "code") String code,
+            @RequestParam(value = "code", required = false) String code,
             HttpServletResponse response) {
         AccessToken token = lineAPIService.gameAccessToken(code);
         Cookie cookie = new Cookie("token", token.access_token);
