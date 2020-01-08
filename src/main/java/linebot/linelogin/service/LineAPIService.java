@@ -5,11 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import linebot.linelogin.entity.Client;
-import linebot.linelogin.entity.LineAPI;
-import linebot.linelogin.entity.AccessToken;
-import linebot.linelogin.entity.IdToken;
-import linebot.linelogin.entity.Verify;
+import linebot.linelogin.entity.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import retrofit2.Call;
@@ -93,6 +89,10 @@ public class LineAPIService {
         } catch (JWTDecodeException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public UserProfile getProfile(String access_token) {
+        return getClient(t -> t.getProfile());
     }
 
     public String getLineLoginUrl(String state, String nonce, List<String> scopes) {
