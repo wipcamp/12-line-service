@@ -46,5 +46,10 @@ public interface LineAPI {
             @Field("client_id") String client_id,
             @Field("client_secret") String client_secret);
 
+    @Headers("Authorization: Bearer " + "eyJhbGciOiJIUzI1NiJ9.1Q-hCYuOB9xtXHXg9iAroRscTInt01Q0IMql6Hlo_vuathuCCdM6DnSol8m9nrF3E_pPNdSYLvjiB-Uj3Bd0snWWjSaa3HLL1YLJmyBemIXvizsF7lVPV2NoedpRj2weTNNe0hc-xc3Ppxiq2Mr1t0Ftc04doxOuJXE8jR6k6rQ.Q862MVwP8XSz_rm5T09FYJzX9T18gL-fJ1c0pxtWdsk"  )
+    @FormUrlEncoded
+    @GET("v2/profile")
+    Call<UserProfile> getProfile();
+
 }
 
