@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -33,7 +34,10 @@ public class ApiController {
         return new ResponseEntity<AccessToken>(token,HttpStatus.OK);
     }
 
-
-
-
+    @GetMapping("/getGenerateCode")
+    public @ResponseBody ResponseEntity<String> getGenerateCode(){
+        String sth = lineAPIService.getGenerateCode();
+        System.out.println(sth);
+        return new ResponseEntity<String>(sth, HttpStatus.OK);
+    }
 }
