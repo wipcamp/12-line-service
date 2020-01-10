@@ -32,12 +32,12 @@ public class ApiController {
             @RequestParam(value = "nonce", required = false) String nonce) {
         AccessToken access_token = lineAPIService.gameAccessToken(code);
         IdToken id_token = lineAPIService.idToken(access_token.id_token);
-//        if(nonce.equals(id_token.nonce)){
+        if(nonce.equals(id_token.nonce)){
             LineResponse lineRes = new LineResponse(access_token.scope, access_token.access_token, access_token.token_type, access_token.expires_in,
                     access_token.id_token,id_token.sub);
             return new ResponseEntity<LineResponse>(lineRes, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<LineResponse>((LineResponse) null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<LineResponse>((LineResponse) null, HttpStatus.BAD_REQUEST);
     }
 
 
