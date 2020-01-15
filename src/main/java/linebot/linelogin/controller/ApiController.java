@@ -7,6 +7,7 @@ import linebot.linelogin.entity.UserProfile;
 import linebot.linelogin.service.LineAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,9 @@ public class ApiController {
             @RequestParam(value = "nonce", required = false) String nonce) {
         AccessToken access_token = lineAPIService.gameAccessToken(code);
         IdToken id_token = lineAPIService.idToken(access_token.id_token);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Set-Cookie","platform=mobile; Max-Age=604800; Path=/; Secure; HttpOnly");
+        ResponseEntity.status(HttpStatus.OK).headers(headers).build();
         if(nonce.equals(id_token.nonce)){
             LineResponse lineRes = new LineResponse(access_token.scope, access_token.access_token, access_token.token_type, access_token.expires_in,
                     access_token.id_token,id_token.sub);
