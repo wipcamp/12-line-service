@@ -12,7 +12,10 @@ import retrofit2.Call;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.util.Base64;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Function;
 
 /**
@@ -155,4 +158,11 @@ public class LineAPIService {
         return Client.getClient("https://api.line.me/", LineAPI.class, function);
     }
 
+    public String getGenerateCode() {
+        byte[] array = new byte[32]; // length is bounded by 7
+        new Random().nextBytes(array);
+        String generatedString = Base64.getUrlEncoder().withoutPadding().encodeToString(array);
+        System.out.println(generatedString);
+        return generatedString;
+    }
 }
