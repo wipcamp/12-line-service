@@ -26,7 +26,7 @@ public class ApiController {
         return new ResponseEntity<String>("Get Response", HttpStatus.OK);
     }
 
-    @GetMapping("/authForGame")
+    @GetMapping("/auth")
     public @ResponseBody ResponseEntity<LineResponse> authForGame(
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "nonce", required = false) String nonce) {
@@ -39,7 +39,6 @@ public class ApiController {
         }
         return new ResponseEntity<LineResponse>((LineResponse) null, HttpStatus.BAD_REQUEST);
     }
-
 
 
 
