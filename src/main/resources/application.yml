@@ -16,6 +16,8 @@ linecorp:
             channelSecret: 1de29b41b4411ff9832c4bba82fe3234
             callbackUrl: 'http://line.service.freezer.wip.camp/auth'
 
+line:
+    secret: 'test12dev'
 
 
 
