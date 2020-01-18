@@ -5,15 +5,18 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import io.jsonwebtoken.*;
 import linebot.linelogin.entity.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import retrofit2.Call;
 
+import javax.sound.sampled.Line;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
@@ -33,6 +36,9 @@ public class LineAPIService {
     private String channelSecret;
     @Value("${linecorp.platform.channel.callbackUrl}")
     private String callbackUrl;
+
+    @Value("${line.secret}")
+    private String SECRET_KEY;
 
     private String gameChannelId = "1653724802";
     private String gameChannelSecret = "8234788b246ebc5fe9e98b92777392e9";
@@ -151,6 +157,35 @@ public class LineAPIService {
         } catch (JWTVerificationException e) {
             //Invalid signature/claims
             return false;
+        }
+    }
+
+    public String createToken(LineResponse lineResponse) {
+        System.out.println(SECRET_KEY);
+        String token = Jwts.builder()
+                .claim("scope", lineResponse.scope)
+                .claim("access_token", lineResponse.access_token)
+                .claim("token_type", lineResponse.token_type)
+                .claim("expires_in", lineResponse.expires_in)
+                .claim("id_token", lineResponse.id_token)
+                .claim("userId", lineResponse.userId)
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).setHeaderParam("token_type", lineResponse.token_type)
+                .compact();
+        return token;
+    }
+
+    public LineResponse decodeToken(String token) {
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            return new LineResponse(
+                    jwt.getClaim("scope").asString(),
+                    jwt.getClaim("access_token").asString(),
+                    jwt.getClaim("token_type").asString(),
+                    jwt.getClaim("expires_in").asInt(),
+                    jwt.getClaim("id_token").asString(),
+                    jwt.getClaim("userId").asString());
+        } catch (JWTDecodeException e) {
+            throw new RuntimeException(e);
         }
     }
 
