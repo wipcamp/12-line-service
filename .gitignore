@@ -1,7 +1,5 @@
 classpath
-.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_1.xml
-.idea/librariesMaven__org_apache_httpcomponents_httpclient_4_5_10.xml
-.idea/librariesMaven__org_apache_httpcomponents_httpcore_4_4_12.xml
+.idea/
 .project
 .settings/
 /target
