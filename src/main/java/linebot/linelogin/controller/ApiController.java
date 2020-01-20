@@ -1,21 +1,14 @@
 package linebot.linelogin.controller;
 
-import linebot.linelogin.entity.AccessToken;
-import linebot.linelogin.entity.IdToken;
-import linebot.linelogin.entity.LineResponse;
-import linebot.linelogin.entity.UserProfile;
+import linebot.linelogin.model.AccessToken;
+import linebot.linelogin.model.IdToken;
+import linebot.linelogin.model.LineResponse;
 import linebot.linelogin.service.LineAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.http.GET;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -58,7 +51,7 @@ public class ApiController {
             @RequestParam(value = "scope", required =false) String scope,
             @RequestParam(value = "access_token", required =false) String access_token,
             @RequestParam(value = "token_type", required =false) String token_type,
-            @RequestParam(value = "expires_in", required = false) int expires_in,
+            @RequestParam(value = "expires_in", required = cfalse) int expires_in,
             @RequestParam(value = "id_token", required =false) String id_token,
             @RequestParam(value = "userId") String userId
     ){

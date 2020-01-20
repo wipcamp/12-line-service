@@ -1,4 +1,4 @@
-package linebot.linelogin.entity;
+package linebot.linelogin.model;
 
 
 import retrofit2.Call;

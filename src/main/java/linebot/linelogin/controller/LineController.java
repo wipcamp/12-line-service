@@ -6,13 +6,11 @@ import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 
 import linebot.linelogin.service.LineAPIService;
-import linebot.linelogin.entity.AccessToken;
-import linebot.linelogin.entity.IdToken;
+import linebot.linelogin.model.AccessToken;
+import linebot.linelogin.model.IdToken;
 import linebot.linelogin.utils.CommonUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.logging.LoggerConfiguration;
-import org.springframework.boot.logging.LoggingSystem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

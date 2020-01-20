@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package linebot.linelogin.entity;
+package linebot.linelogin.model;
 
 public final class Verify {
 

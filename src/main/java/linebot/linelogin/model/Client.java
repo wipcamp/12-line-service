@@ -1,4 +1,4 @@
-package linebot.linelogin.entity;
+package linebot.linelogin.model;
 
 
 import java.io.IOException;

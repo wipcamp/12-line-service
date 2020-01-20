@@ -6,17 +6,14 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import io.jsonwebtoken.*;
-import linebot.linelogin.entity.*;
+import linebot.linelogin.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import retrofit2.Call;
 
-import javax.sound.sampled.Line;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
