@@ -157,19 +157,19 @@ public class LineAPIService {
         }
     }
 
-    public String createToken(LineResponse lineResponse) {
-        System.out.println(SECRET_KEY);
-        String token = Jwts.builder()
-                .claim("scope", lineResponse.scope)
-                .claim("access_token", lineResponse.access_token)
-                .claim("token_type", lineResponse.token_type)
-                .claim("expires_in", lineResponse.expires_in)
-                .claim("id_token", lineResponse.id_token)
-                .claim("userId", lineResponse.userId)
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).setHeaderParam("token_type", lineResponse.token_type)
-                .compact();
-        return token;
-    }
+//    public String createToken(LineResponse lineResponse) {
+//        System.out.println(SECRET_KEY);
+//        String token = Jwts.builder()
+//                .claim("scope", lineResponse.scope)
+//                .claim("access_token", lineResponse.access_token)
+//                .claim("token_type", lineResponse.token_type)
+//                .claim("expires_in", lineResponse.expires_in)
+//                .claim("id_token", lineResponse.id_token)
+//                .claim("userId", lineResponse.userId)
+//                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).setHeaderParam("token_type", lineResponse.token_type)
+//                .compact();
+//        return token;
+//    }
 
     public LineResponse decodeToken(String token) {
         try {
