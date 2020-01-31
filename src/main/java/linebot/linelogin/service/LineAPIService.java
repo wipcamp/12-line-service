@@ -37,8 +37,8 @@ public class LineAPIService {
     @Value("${line.secret}")
     private String SECRET_KEY;
 
-    private String gameChannelId = "1653724802";
-    private String gameChannelSecret = "8234788b246ebc5fe9e98b92777392e9";
+    private String gameChannelId = "1653703435";
+    private String gameChannelSecret = "1de29b41b4411ff9832c4bba82fe3234";
     private String gameCallbackUrl = "";
 
     public AccessToken accessToken(String code) {
