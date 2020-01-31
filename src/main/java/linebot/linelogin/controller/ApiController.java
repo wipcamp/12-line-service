@@ -24,13 +24,27 @@ public class ApiController {
 
     @GetMapping("/auth")
     public @ResponseBody ResponseEntity<LineResponse> authForGame(
-            @RequestParam(value = "code", required = false) String code,
-            @RequestParam(value = "nonce", required = false) String nonce) {
+            @RequestParam(value = "code", required = true) String code,
+            @RequestParam(value = "nonce", required = true) String nonce) {
         AccessToken access_token = lineAPIService.gameAccessToken(code);
         IdToken id_token = lineAPIService.idToken(access_token.id_token);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Set-Cookie","platform=mobile; Max-Age=604800; Path=/; HttpOnly");
         ResponseEntity.status(HttpStatus.OK).headers(headers).build();
+        if(nonce.equals(id_token.nonce)){
+            LineResponse lineRes = new LineResponse(access_token.scope, access_token.access_token, access_token.token_type, access_token.expires_in,
+                    access_token.id_token,id_token.sub);
+            return new ResponseEntity<LineResponse>(lineRes, HttpStatus.OK);
+        }
+        return new ResponseEntity<LineResponse>((LineResponse) null, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/userAuth")
+    public @ResponseBody ResponseEntity<LineResponse> authForUser(
+            @RequestParam(value = "code", required = true) String code,
+            @RequestParam(value = "nonce", required = true) String nonce) {
+        AccessToken access_token = lineAPIService.accessToken(code);
+        IdToken id_token = lineAPIService.idToken(access_token.id_token);
         if(nonce.equals(id_token.nonce)){
             LineResponse lineRes = new LineResponse(access_token.scope, access_token.access_token, access_token.token_type, access_token.expires_in,
                     access_token.id_token,id_token.sub);
