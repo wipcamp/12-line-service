@@ -171,7 +171,7 @@ public class LineAPIService {
                     jwt.getClaim("expires_in").asInt(),
                     jwt.getClaim("id_token").asString(),
                     jwt.getClaim("userId").asString(),
-                    "");
+                    "", "");
         } catch (JWTDecodeException e) {
             throw new RuntimeException(e);
         }
