@@ -39,23 +39,13 @@ public class LineAPIService {
 
     private String gameChannelId = "1653703435";
     private String gameChannelSecret = "1de29b41b4411ff9832c4bba82fe3234";
-    private String gameCallbackUrl = "";
 
-    public AccessToken accessToken(String code) {
+    public AccessToken accessToken(String code, String url){
         return getClient(t -> t.accessToken(
                 GRANT_TYPE_AUTHORIZATION_CODE,
                 gameChannelId,
                 gameChannelSecret,
-                "https://12-itim.freezer.wip.camp/login",
-                code));
-    }
-
-    public AccessToken gameAccessToken(String code) {
-        return getClient(t -> t.accessToken(
-                GRANT_TYPE_AUTHORIZATION_CODE,
-                gameChannelId,
-                gameChannelSecret,
-                "https://12-gamecamp.freezer.wip.camp/login",
+                url,
                 code));
     }
 

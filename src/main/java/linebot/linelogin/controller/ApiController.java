@@ -17,49 +17,24 @@ public class ApiController {
     @Autowired
     private LineAPIService lineAPIService;
 
-    @GetMapping("/recieveToken")
+    @GetMapping("/test")
     public @ResponseBody ResponseEntity<String> recieveToken(){
         return new ResponseEntity<String>("Get Response", HttpStatus.OK);
     }
 
     @GetMapping("/auth")
-    public @ResponseBody ResponseEntity<LineResponse> authForGame(
+    public @ResponseBody ResponseEntity<LineResponse> auth(
             @RequestParam(value = "code", required = true) String code,
-            @RequestParam(value = "nonce", required = true) String nonce) {
-        AccessToken access_token = lineAPIService.gameAccessToken(code);
+            @RequestParam(value = "nonce", required = true) String nonce,
+            @RequestParam(value = "url", required = true) String url) {
+//        AccessToken access_token = lineAPIService.gameAccessToken(code);
+        AccessToken access_token = lineAPIService.accessToken(code, url);
         IdToken id_token = lineAPIService.idToken(access_token.id_token);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Set-Cookie","platform=mobile; Max-Age=604800; Path=/; HttpOnly");
-        ResponseEntity.status(HttpStatus.OK).headers(headers).build();
-        if(nonce.equals(id_token.nonce)){
-            LineResponse lineRes = new LineResponse(access_token.scope, access_token.access_token, access_token.token_type, access_token.expires_in,
-                    access_token.id_token,id_token.sub, id_token.name);
-            return new ResponseEntity<LineResponse>(lineRes, HttpStatus.OK);
-        }
-        else if(nonce.equals("test12dev")){
-            LineResponse lineRes = new LineResponse(access_token.scope, access_token.access_token, access_token.token_type, access_token.expires_in,
-                    access_token.id_token,id_token.sub, id_token.name);
-            return new ResponseEntity<LineResponse>(lineRes, HttpStatus.OK);
-        }
-        return new ResponseEntity<LineResponse>((LineResponse) null, HttpStatus.BAD_REQUEST);
-    }
-
-    @GetMapping("/userAuth")
-    public @ResponseBody ResponseEntity<LineResponse> authForUser(
-            @RequestParam(value = "code", required = true) String code,
-            @RequestParam(value = "nonce", required = true) String nonce) {
-        AccessToken access_token = lineAPIService.accessToken(code);
-        IdToken id_token = lineAPIService.idToken(access_token.id_token);
-        if(nonce.equals(id_token.nonce)){
-            LineResponse lineRes = new LineResponse(access_token.scope, access_token.access_token, access_token.token_type, access_token.expires_in,
-                    access_token.id_token,id_token.sub, id_token.name);
-            return new ResponseEntity<LineResponse>(lineRes, HttpStatus.OK);
-        }
-        else if(nonce.equals("test12dev")){
-            LineResponse lineRes = new LineResponse(access_token.scope, access_token.access_token, access_token.token_type, access_token.expires_in,
-                    access_token.id_token,id_token.sub, id_token.name);
-            return new ResponseEntity<LineResponse>(lineRes, HttpStatus.OK);
-        }
+            if(nonce.equals(id_token.nonce)){
+                LineResponse lineRes = new LineResponse(access_token.scope, access_token.access_token, access_token.token_type, access_token.expires_in,
+                        access_token.id_token,id_token.sub, id_token.name);
+                return new ResponseEntity<LineResponse>(lineRes, HttpStatus.OK);
+            }
         return new ResponseEntity<LineResponse>((LineResponse) null, HttpStatus.BAD_REQUEST);
     }
 
