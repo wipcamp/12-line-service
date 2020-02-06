@@ -27,14 +27,14 @@ public class LineAPIService {
     private static final String GRANT_TYPE_AUTHORIZATION_CODE = "authorization_code";
     private static final String GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
 
-    @Value("${linecorp.platform.channel.channelId}")
+//    @Value("${linecorp.platform.channel.channelId}")
     private String channelId;
-    @Value("${linecorp.platform.channel.channelSecret}")
+//    @Value("${linecorp.platform.channel.channelSecret}")
     private String channelSecret;
-    @Value("${linecorp.platform.channel.callbackUrl}")
+//    @Value("${linecorp.platform.channel.callbackUrl}")
     private String callbackUrl;
 
-    @Value("${line.secret}")
+//    @Value("${line.secret}")
     private String SECRET_KEY;
 
     private String gameChannelId = "1653703435";
